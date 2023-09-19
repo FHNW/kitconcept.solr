@@ -48,7 +48,8 @@ setup(
     },
     install_requires=[
         "Plone>=5.2.0",
-        "plone.restapi>=8.40.0",
+        "plone.restapi>=8.21.2",   # for Plone 5.2
+#        "plone.restapi>=8.40.0",   # for Plone 6.0
         "plone.api",
         "setuptools",
         "collective.solr>=9.0.1",
