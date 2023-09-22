@@ -56,6 +56,7 @@ clean-instance: ## remove existing instance
 clean-venv: ## remove virtual environment
 	rm -fr bin include lib lib64 env pyvenv.cfg .tox .pytest_cache requirements-mxdev.txt
 	cp constraints-6.0.txt constraints.txt
+	cp requirements-6.0.txt requirements.txt
 
 .PHONY: clean-build
 clean-build: ## remove build artifacts
@@ -95,6 +96,7 @@ config: bin/pip  ## Create instance configuration
 install-plone-6.0: bin/mxdev config ## pip install Plone packages
 	@echo "$(GREEN)==> Setup Build$(RESET)"
 	cp constraints-6.0.txt constraints.txt
+	cp requirements-6.0.txt requirements.txt
 	bin/tox -e init
 	bin/mxdev -c mx.ini
 	bin/pip install -r requirements-mxdev.txt
@@ -103,6 +105,7 @@ install-plone-6.0: bin/mxdev config ## pip install Plone packages
 install-plone-5.2: bin/mxdev config ## pip install Plone packages
 	@echo "$(GREEN)==> Setup Build$(RESET)"
 	cp constraints-5.2.txt constraints.txt
+	cp requirements-5.2.txt requirements.txt
 	bin/tox -e init
 	bin/mxdev -c mx.ini
 	bin/pip install -r requirements-mxdev.txt
