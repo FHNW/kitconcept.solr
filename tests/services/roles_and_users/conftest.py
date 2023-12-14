@@ -30,7 +30,12 @@ def user_credentials() -> tuple:
 
 
 @pytest.fixture
-def users(user_credentials) -> List:
+def member_as_user1_credentials() -> tuple:
+    return "member_as_user1", "averylongpasswordbutnotthatlong"
+
+
+@pytest.fixture
+def users(user_credentials, member_as_user1_credentials) -> List:
     return [
         {
             "username": user_credentials[0],
@@ -38,13 +43,21 @@ def users(user_credentials) -> List:
             "password": user_credentials[1],
             "roles": ["Member"],
         },
+        {
+            "username": member_as_user1_credentials[0],
+            "email": "user2@foo.bar",
+            "password": member_as_user1_credentials[1],
+            "roles": ["Member"],
+            #            "roles": ["user:test_user_1_"],
+        },
     ]
 
 
 @pytest.fixture
-def users_credentials_role(user_credentials) -> dict:
+def users_credentials_role(user_credentials, member_as_user1_credentials) -> dict:
     return {
         "manager": (SITE_OWNER_NAME, SITE_OWNER_PASSWORD),
         "member": user_credentials,
         "anonymous": None,
+        "member_as_user1": member_as_user1_credentials,
     }
